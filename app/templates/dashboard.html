@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>VELA | Yönetim Paneli</title>
+<style>
+    :root {
+        --kirk-beyaz: #F4EFE6;
+        --turuncu: #C76532;
+        --yesil: #435747;
+        --koyu-yesil: #29382E;
+        --metin: #292C28;
+        --kart: rgba(255, 255, 255, 0.32);
+    }
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        min-height: 100vh;
+        background-color: var(--kirk-beyaz);
+        color: var(--metin);
+        font-family: Arial, sans-serif;
+    }
+
+    header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 26px 7%;
+        border-bottom: 1px solid rgba(67, 87, 71, 0.2);
+    }
+
+    .logo {
+        color: var(--yesil);
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 30px;
+        font-weight: bold;
+        letter-spacing: 8px;
+    }
+
+    header p {
+        color: var(--turuncu);
+        font-size: 12px;
+        font-weight: bold;
+        letter-spacing: 4px;
+    }
+
+    main {
+        padding: 70px 7%;
+    }
+
+    section {
+        max-width: 1100px;
+    }
+
+    section > p:first-child {
+        margin-bottom: 18px;
+        color: var(--turuncu);
+        font-size: 12px;
+        font-weight: bold;
+        letter-spacing: 4px;
+    }
+
+    h1 {
+        margin-bottom: 18px;
+        color: var(--koyu-yesil);
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(48px, 7vw, 84px);
+        font-weight: normal;
+    }
+
+    section > p:last-child {
+        max-width: 650px;
+        color: var(--yesil);
+        font-size: 18px;
+        line-height: 1.6;
+    }
+.leads-area {
+    margin-top: 60px;
+    padding: 34px;
+    border: 1px solid rgba(67, 87, 71, 0.18);
+    border-radius: 24px;
+    background-color: var(--kart);
+}
+
+.leads-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 28px;
+}
+
+.eyebrow {
+    margin-bottom: 10px;
+    color: var(--turuncu);
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 4px;
+}
+
+.leads-header h2 {
+    color: var(--koyu-yesil);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 38px;
+    font-weight: normal;
+}
+
+.lead-count {
+    min-width: 90px;
+    padding: 14px 18px;
+    border-radius: 18px;
+    background-color: var(--koyu-yesil);
+    color: var(--kirk-beyaz);
+    text-align: center;
+}
+
+.lead-count span {
+    display: block;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 28px;
+}
+
+.lead-count small {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.leads-list {
+    display: grid;
+    gap: 16px;
+}
+
+.loading-text {
+    padding: 22px;
+    border-radius: 16px;
+    background-color: rgba(67, 87, 71, 0.06);
+    color: var(--yesil);
+}
+.lead-card {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 24px;
+    padding: 22px;
+    border: 1px solid rgba(67, 87, 71, 0.16);
+    border-radius: 18px;
+    background-color: rgba(255, 255, 255, 0.42);
+}
+
+.lead-main h3 {
+    margin-bottom: 10px;
+    color: var(--koyu-yesil);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 26px;
+    font-weight: normal;
+}
+
+.lead-main p {
+    color: var(--metin);
+    line-height: 1.6;
+}
+
+.lead-details {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    color: var(--yesil);
+    font-size: 14px;
+}
+
+.lead-details span {
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgba(67, 87, 71, 0.12);
+}
+.durum-select {
+    width: 100%;
+    margin-top: 6px;
+    padding: 10px 12px;
+    border: 1px solid rgba(67, 87, 71, 0.25);
+    border-radius: 12px;
+    background-color: var(--kirk-beyaz);
+    color: var(--koyu-yesil);
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    outline: none;
+    cursor: pointer;
+}
+
+.durum-select:focus {
+    border-color: var(--turuncu);
+}
+
+.durum-select:hover {
+    border-color: var(--yesil);
+}
+.filter-bar {
+    display: grid;
+    grid-template-columns: 1fr 240px;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.filter-bar input,
+.filter-bar select {
+    width: 100%;
+    padding: 13px 15px;
+    border: 1px solid rgba(67, 87, 71, 0.25);
+    border-radius: 14px;
+    background-color: var(--kirk-beyaz);
+    color: var(--koyu-yesil);
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    outline: none;
+}
+
+.filter-bar input:focus,
+.filter-bar select:focus {
+    border-color: var(--turuncu);
+}
+
+.filter-bar select {
+    font-weight: bold;
+    cursor: pointer;
+}
+.sil-button {
+    width: 100%;
+    margin-top: 6px;
+    padding: 10px 14px;
+    border: 1px solid var(--turuncu);
+    border-radius: 12px;
+    background-color: transparent;
+    color: var(--turuncu);
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.sil-button:hover {
+    background-color: var(--turuncu);
+    color: white;
+}
+</style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">VELA</div>
+        <p>YÖNETİM PANELİ</p>
+    </header>
+
+    <main>
+
+        <section>
+            <p>MÜŞTERİ İLETİŞİMLERİ</p>
+
+            <h1>Gelen Talepler</h1>
+
+            <p>
+                Vela ile iletişime geçen müşterileri buradan takip edebilirsiniz.
+            </p>
+        </section>
+
+        <div class="leads-area">
+
+    <div class="leads-header">
+        <div>
+            <p class="eyebrow">MÜŞTERİ TALEPLERİ</p>
+            <h2>Gelen Talepler</h2>
+        </div>
+
+        <div class="lead-count">
+            <span id="leadCount">0</span>
+            <small>Talep</small>
+        </div>
+    </div>
+<div class="filter-bar">
+    <input
+        type="text"
+        id="aramaInput"
+        placeholder="İsim, e-posta veya telefon ara..."
+    >
+
+    <select id="durumFiltre">
+        <option value="Tümü">Tüm Durumlar</option>
+        <option value="Yeni">Yeni</option>
+        <option value="İletişime Geçildi">İletişime Geçildi</option>
+        <option value="Tamamlandı">Tamamlandı</option>
+    </select>
+</div>
+    <div id="leadsList" class="leads-list">
+        <p class="loading-text">Talepler yükleniyor...</p>
+    </div>
+
+</div>
+
+    </main>
+
+<script>
+    const leadsList = document.getElementById("leadsList");
+    const leadCount = document.getElementById("leadCount");
+
+    async function leadleriYukle() {
+        try {
+            const response = await fetch("/api/leads");
+            const data = await response.json();
+
+            if (!response.ok || !data.basari) {
+                throw new Error("Lead verileri alınamadı.");
+            }
+const arama = aramaInput.value.trim().toLowerCase();
+const secilenDurum = durumFiltre.value;
+
+const filtrelenmisLeadler = data.leadler.filter((lead) => {
+    const aramaEslesiyor =
+        lead.isim.toLowerCase().includes(arama) ||
+        lead.email.toLowerCase().includes(arama) ||
+        lead.telefon.toLowerCase().includes(arama);
+
+    const durumEslesiyor =
+        secilenDurum === "Tümü" ||
+        lead.durum === secilenDurum;
+
+    return aramaEslesiyor && durumEslesiyor;
+});
+            leadCount.textContent = filtrelenmisLeadler.length;
+
+            if (filtrelenmisLeadler.length === 0) {
+                leadsList.innerHTML = `
+                    <p class="loading-text">
+                        Henüz kayıtlı bir talep bulunmuyor.
+                    </p>
+                `;
+                return;
+            }
+
+            leadsList.innerHTML = filtrelenmisLeadler.map((lead) => `
+                <div class="lead-card">
+                    <div class="lead-main">
+                        <h3>${lead.isim}</h3>
+                        <p>${lead.mesaj || "Mesaj bırakılmadı."}</p>
+                    </div>
+
+                    <div class="lead-details">
+                        <span>${lead.telefon}</span>
+                        <span>${lead.email}</span>
+                        <span>${lead.tarih}</span>
+
+                        <select
+                            class="durum-select"
+                            onchange="durumDegistir(${lead.id}, this.value)"
+                        >
+                            <option
+                                value="Yeni"
+                                ${lead.durum === "Yeni" ? "selected" : ""}
+                            >
+                                Yeni
+                            </option>
+
+                            <option
+                                value="İletişime Geçildi"
+                                ${lead.durum === "İletişime Geçildi" ? "selected" : ""}
+                            >
+                                İletişime Geçildi
+                            </option>
+
+                            <option
+                                value="Tamamlandı"
+                                ${lead.durum === "Tamamlandı" ? "selected" : ""}
+                            >
+                                Tamamlandı
+                            </option>
+                        </select>
+
+                        <button
+                            type="button"
+                            class="sil-button"
+                            onclick="leadSil(${lead.id})"
+                        >
+                            Sil
+                        </button>
+                    </div>
+                </div>
+            `).join("");
+
+        } catch (error) {
+            leadCount.textContent = "!";
+            leadsList.innerHTML = `
+                <p class="loading-text">
+                    Talepler yüklenirken bir hata oluştu.
+                </p>
+            `;
+        }
+    }
+
+async function leadSil(leadId) {
+    const onay = confirm(
+        "Bu müşteri talebini silmek istediğinize emin misiniz?"
+    );
+
+    if (!onay) {
+        return;
+    }
+
+    try {
+        const response = await fetch(`/api/leads/${leadId}`, {
+            method: "DELETE"
+        });
+
+        const data = await response.json();
+
+        if (!response.ok || !data.basari) {
+            throw new Error(data.hata || "Talep silinemedi.");
+        }
+
+        await leadleriYukle();
+
+    } catch (error) {
+        alert("Talep silinirken bir hata oluştu.");
+    }
+}
+const aramaInput = document.getElementById("aramaInput");
+const durumFiltre = document.getElementById("durumFiltre");
+
+aramaInput.addEventListener("input", () => {
+    leadleriYukle();
+});
+
+durumFiltre.addEventListener("change", () => {
+    leadleriYukle();
+});
+    leadleriYukle();
+</script>
+</body>
+</html>

@@ -402,7 +402,30 @@ const filtrelenmisLeadler = data.leadler.filter((lead) => {
             `;
         }
     }
+async function durumDegistir(leadId, yeniDurum) {
+    try {
+        const response = await fetch(`/api/leads/${leadId}/durum`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                durum: yeniDurum
+            })
+        });
 
+        const data = await response.json();
+
+        if (!response.ok || !data.basari) {
+            throw new Error(data.hata || "Durum güncellenemedi.");
+        }
+
+        await leadleriYukle();
+
+    } catch (error) {
+        alert("Durum değiştirilirken bir hata oluştu.");
+    }
+}
 async function leadSil(leadId) {
     const onay = confirm(
         "Bu müşteri talebini silmek istediğinize emin misiniz?"

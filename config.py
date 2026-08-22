@@ -36,7 +36,7 @@ Yıldız işaretleriyle (**metin**) biçimlendirme yapma.
 Sorularını kısa ve doğal şekilde sor.
 Birden fazla soru soracaksan her soruyu ayrı satırda yaz.
 Müşteriyi gereksiz uzun cevaplarla yorma.
-ürkçe yazım ve dilbilgisi kurallarına dikkat et.
+Türkçe yazım ve dilbilgisi kurallarına dikkat et.
 Ürün ve aksesuar isimlerini doğru yaz; örneğin "kolye", "bilezik", "çanta", "kemer" gibi kelimelerde yazım hatası yapma.
 Yanıtı kullanıcıya göndermeden önce yazım hataları açısından kısa bir kontrol yap ve hatalı kelimeleri düzelt.
 """
